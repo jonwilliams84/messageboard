@@ -1,0 +1,16 @@
+@font-face {
+        font-family: "Bebas Neue";
+        src: url("./assets/fonts/bebas-neue-regular.ttf") format("truetype");
+      }
+@font-face {
+        font-family: "big-shoulders-text-regular";
+        src: url("/assets/fonts/bebas-neue-regular.ttf") format("truetype");
+      }
+@font-face {
+        font-family: "Big Shoulders Text";
+        src: url("./assets/fonts/bebas-neue-regular.ttf") format("truetype");
+      }
+@font-face {
+        font-family: "Big Shoulders Text";
+        src: url("/assets/fonts/bebas-neue-regular.ttf") format("truetype");
+      }
