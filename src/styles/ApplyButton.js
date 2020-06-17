@@ -20,6 +20,7 @@ const Container = styled.div`
   padding-left: 16px;
   padding-right: 16px;
   box-shadow: 0px 1px 5px  0.35px #000 ;
+  cursor: 'pointer';
 `;
 
 const Caption = styled.span`

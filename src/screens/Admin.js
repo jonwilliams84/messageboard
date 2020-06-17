@@ -107,7 +107,8 @@ const Admin = () => {
             height: 25,
             width: 85,
             marginLeft: 0,
-            marginTop: 0
+            marginTop: 0,
+            cursor: 'pointer'
           }}
           caption="UPLOAD"
         ></UploadButton>
@@ -117,7 +118,8 @@ const Admin = () => {
           height: 40,
           width: 150,
           marginTop: 40,
-          marginLeft: 0
+          marginLeft: 0,
+          cursor: 'pointer'
         }}
         caption="APPLY"
       ></ApplyButton>
