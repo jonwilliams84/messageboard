@@ -106,23 +106,18 @@ const Admin = () => {
           style={{
             height: 25,
             width: 85,
-            marginLeft: 0
+            marginLeft: -100,
+            marginTop: 30
           }}
           caption="UPLOAD"
         ></UploadButton>
       </PhotoEnable>
-      <ButtonStack>
-        <Button>
-          <ButtonOverlay></ButtonOverlay>
-        </Button>
-        <ButtonSpan onClick={setSettings}>APPLY</ButtonSpan>
-      </ButtonStack>
-      <ApplyButton
+      <ApplyButton onClick={setSettings}
         style={{
-          height: 36,
-          width: 100,
-          marginTop: 34,
-          marginLeft: 136
+          height: 40,
+          width: 150,
+          marginTop: 60,
+          marginLeft: 0
         }}
         caption="APPLY"
       ></ApplyButton>
