@@ -28,7 +28,7 @@ const LeftImage = styled.img`
 
 const ChipText = styled.span`
   font-family: Bebas Neue;
-  font-size: 13px;
+  font-size: 12px;
   color: rgba(255,255,255,0.87);
   padding-left: 8px;
   padding-right: 12px;
