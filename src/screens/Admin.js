@@ -13,14 +13,16 @@ import ButtonSpan from "../styles/ButtonSpan";
 import { ADMIN_URL as URL } from "../Constants";
 import MaterialUISwitch from "@material-ui/core/Switch";
 import UploadButton from "../styles/UploadButton";
-import PhotoMode from "../styles/PhotoMode"
-import PhotoEnable from "../styles/PhotoEnable"
-import PhotoEnableSwitch from "../styles/PhotoEnableSwitch"
-import ApplyButton from "../styles/ApplyButton"
+import PhotoMode from "../styles/PhotoMode";
+import PhotoEnable from "../styles/PhotoEnable";
+import PhotoEnableSwitch from "../styles/PhotoEnableSwitch";
+import ApplyButton from "../styles/ApplyButton";
 
 const Admin = () => {
   const [formValues, setFormValues] = useState({});
   const [backgroundColour, setBackgroundColour] = useState("#000");
+  const [image, setImage] = useState();
+  const [photoMode, setPhotoMode] = useState(false);
   const history = useHistory();
 
   useEffect(() => {
@@ -49,6 +51,9 @@ const Admin = () => {
       lines: JSON.stringify(formValues),
       backgroundColour: backgroundColour,
     };
+    if (image && photoMode) {
+      body.image = image;
+    }
     const response = await fetch(URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -58,6 +63,14 @@ const Admin = () => {
     if (status === 200) {
       alert("Done");
     }
+  };
+
+  const imageChange = (imageList) => {
+    setImage(imageList[0].dataURL);
+  };
+
+  const photoModeChange = () => {
+    setPhotoMode(!photoMode);
   };
 
   return (
@@ -97,34 +110,39 @@ const Admin = () => {
         <PhotoMode>Photo Mode</PhotoMode>
         <PhotoEnableSwitch>
           <MaterialUISwitch
+            onChange={photoModeChange}
             color="primary"
-            checked={true}
+            checked={photoMode}
             style={{ color: "rgba(74,144,226,1)" }}
           ></MaterialUISwitch>
         </PhotoEnableSwitch>
-        <UploadButton
-        style={{
-          width: 32,
-          height: 32,
-          backgroundColor: "rgba(0,0,0,1)",
-          marginLeft: 0,
-          marginTop: 0
-        }}
-        chipText="UPLOAD"
-      ></UploadButton>
+        {photoMode && (
+          <UploadButton
+            imageChange={imageChange}
+            image={image}
+            style={{
+              width: 32,
+              height: 32,
+              backgroundColor: "rgba(0,0,0,1)",
+              marginLeft: 0,
+              marginTop: 0,
+            }}
+            chipText="UPLOAD"
+          ></UploadButton>
+        )}
       </PhotoEnable>
-      <ApplyButton onClick={setSettings}
+      <ApplyButton
+        onClick={setSettings}
         style={{
           height: 40,
           width: 150,
           marginTop: 40,
           marginLeft: 0,
-          cursor: 'pointer'
+          cursor: "pointer",
         }}
         caption="APPLY"
       ></ApplyButton>
     </AdminContent>
-
   );
 };
 
