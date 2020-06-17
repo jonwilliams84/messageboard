@@ -12,3 +12,21 @@ const Button = styled.div`
 `;
 
 export default Button;
+
+//import React, { Component } from "react";
+//import styled, { css } from "styled-components";
+//import MaterialButtonGrey from "../components/MaterialButtonGrey";
+
+//function Button(props) {
+//  return (
+//    <MaterialButtonGrey
+//      style={{
+//        height: 36,
+//        width: 100
+//      }}
+//      caption="APPLY"
+//    ></MaterialButtonGrey>
+//  );
+//}
+
+//export default Button;

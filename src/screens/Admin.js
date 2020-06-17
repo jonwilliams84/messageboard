@@ -11,6 +11,11 @@ import Button from "../styles/Button";
 import ButtonOverlay from "../styles/ButtonOverlay";
 import ButtonSpan from "../styles/ButtonSpan";
 import { ADMIN_URL as URL } from "../Constants";
+import MaterialUISwitch from "@material-ui/core/Switch";
+import MaterialButtonGrey from "../styles/MaterialButtonGrey";
+import PhotoMode from "../styles/PhotoMode"
+import PhotoEnable from "../styles/PhotoEnable"
+import Switch from "../styles/PhotoEnable"
 
 const Admin = () => {
   const [formValues, setFormValues] = useState({});
@@ -87,6 +92,24 @@ const Admin = () => {
         backgroundColour={backgroundColour}
         handleBackgroundColourChange={handleBackgroundColourChange}
       />
+      <PhotoEnable>
+        <PhotoMode>Photo Mode</PhotoMode>
+        <Switch>
+          <MaterialUISwitch
+            color="primary"
+            checked={true}
+            style={{ color: "rgba(74,144,226,1)" }}
+          ></MaterialUISwitch>
+        </Switch>
+        <MaterialButtonGrey
+          style={{
+            height: 25,
+            width: 85,
+            marginLeft: 13
+          }}
+          caption="UPLOAD"
+        ></MaterialButtonGrey>
+      </PhotoEnable>
 
       <ButtonStack>
         <Button>
@@ -95,6 +118,7 @@ const Admin = () => {
         <ButtonSpan onClick={setSettings}>APPLY</ButtonSpan>
       </ButtonStack>
     </AdminContent>
+
   );
 };
 
