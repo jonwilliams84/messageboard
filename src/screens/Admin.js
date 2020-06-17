@@ -108,7 +108,8 @@ const Admin = () => {
           height: 32,
           backgroundColor: "rgba(0,0,0,1)",
           marginLeft: 0,
-          marginTop: 0
+          marginTop: 0,
+          cursor: 'pointer'
         }}
         chipText="UPLOAD"
       ></UploadButton>
