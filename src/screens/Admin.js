@@ -106,7 +106,7 @@ const Admin = () => {
           style={{
             height: 25,
             width: 85,
-            marginLeft: 10,
+            marginLeft: 0,
             marginTop: 0
           }}
           caption="UPLOAD"
@@ -116,7 +116,7 @@ const Admin = () => {
         style={{
           height: 40,
           width: 150,
-          marginTop: 60,
+          marginTop: 40,
           marginLeft: 0
         }}
         caption="APPLY"

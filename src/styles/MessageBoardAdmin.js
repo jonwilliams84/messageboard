@@ -7,7 +7,7 @@ const MessageBoardAdmin = styled.span`
   color: rgb(240,240,240,1);
   font-size: 3.5rem;
   text-align: center;
-  margin-top: 11.3rem;
+  margin-top: 5.3rem;
 `;
 
 export default MessageBoardAdmin;
