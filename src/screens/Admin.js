@@ -118,6 +118,8 @@ const Admin = () => {
         </PhotoEnableSwitch>
         {photoMode && (
           <UploadButton
+            imageChange={imageChange}
+            image={image}
             style={{
               width: 32,
               height: 32,
