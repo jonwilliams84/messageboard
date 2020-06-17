@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Content from "../styles/Content";
 import FormText from "../components/FormText";
 import ColourPicker from "../components/ColourChanger";
-import { useHistory } from "react-router-dom";
 import AdminContent from "../styles/AdminContent";
 import MessageBoardAdmin from "../styles/MessageBoardAdmin";
 import FormInput from "../styles/FormInput";
@@ -23,7 +22,6 @@ const Admin = () => {
   const [backgroundColour, setBackgroundColour] = useState("#000");
   const [image, setImage] = useState();
   const [photoMode, setPhotoMode] = useState(false);
-  const history = useHistory();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,6 +31,10 @@ const Admin = () => {
       const data = await response.json();
       setFormValues(JSON.parse(data.lines));
       setBackgroundColour(data.backgroundColour);
+      setPhotoMode(data.photoMode);
+      if (data.image) {
+        setImage(data.image);
+      }
     };
     fetchData();
   }, []);
@@ -50,6 +52,7 @@ const Admin = () => {
     const body = {
       lines: JSON.stringify(formValues),
       backgroundColour: backgroundColour,
+      photoMode: photoMode,
     };
     if (image && photoMode) {
       body.image = image;
