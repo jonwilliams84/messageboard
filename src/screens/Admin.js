@@ -103,15 +103,15 @@ const Admin = () => {
           ></MaterialUISwitch>
         </PhotoEnableSwitch>
         <UploadButton
-          style={{
-            height: 25,
-            width: 85,
-            marginLeft: 0,
-            marginTop: 0,
-            cursor: 'pointer'
-          }}
-          caption="UPLOAD"
-        ></UploadButton>
+        style={{
+          width: 32,
+          height: 32,
+          backgroundColor: "rgba(0,0,0,1)",
+          marginLeft: 0,
+          marginTop: 0
+        }}
+        chipText="UPLOAD"
+      ></UploadButton>
       </PhotoEnable>
       <ApplyButton onClick={setSettings}
         style={{

@@ -4,28 +4,34 @@ import styled, { css } from "styled-components";
 function UploadButton(props) {
   return (
     <Container {...props}>
-      <Caption>{props.caption || "BUTTON"}</Caption>
+      <LeftImage src={require("../assets/images/cardImage.png")}></LeftImage>
+      <ChipText>{props.chipText || "Example Chip"}</ChipText>
     </Container>
   );
 }
 
 const Container = styled.div`
   display: flex;
-  background-color: #999999;
-  justify-content: center;
   align-items: center;
+  justify-content: space-between;
+  background-color: rgb(230,230,230);
+  border-radius: 50px;
   flex-direction: row;
-  border-radius: 2px;
-  min-width: 80px;
-  padding-left: 16px;
-  padding-right: 16px;
-  box-shadow: 0px 1px 5px  0.35px #000 ;
 `;
 
-const Caption = styled.span`
+const LeftImage = styled.img`
+  height: 32px;
+  width: 100%;
+  background-color: #CCC;
+  border-radius: 16px;
+`;
+
+const ChipText = styled.span`
   font-family: Bebas Neue;
-  color: #000000;
-  font-size: 15px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.87);
+  padding-left: 8px;
+  padding-right: 12px;
 `;
 
 export default UploadButton;
