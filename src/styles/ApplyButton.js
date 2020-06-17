@@ -25,7 +25,7 @@ const Container = styled.div`
 const Caption = styled.span`
   font-family: Bebas Neue;
   color: #000000;
-  font-size: 18px;
+  font-size: 24px;
 `;
 
 export default ApplyButton;

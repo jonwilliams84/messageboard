@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled, { css } from "styled-components";
 
-function MaterialButtonGrey(props) {
+function UploadButton(props) {
   return (
     <Container {...props}>
       <Caption>{props.caption || "BUTTON"}</Caption>
@@ -25,7 +25,7 @@ const Container = styled.div`
 const Caption = styled.span`
   font-family: Bebas Neue;
   color: #000000;
-  font-size: 14px;
+  font-size: 15px;
 `;
 
-export default MaterialButtonGrey;
+export default UploadButton;

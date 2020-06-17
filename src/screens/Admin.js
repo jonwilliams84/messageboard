@@ -12,7 +12,7 @@ import ButtonOverlay from "../styles/ButtonOverlay";
 import ButtonSpan from "../styles/ButtonSpan";
 import { ADMIN_URL as URL } from "../Constants";
 import MaterialUISwitch from "@material-ui/core/Switch";
-import MaterialButtonGrey from "../styles/MaterialButtonGrey";
+import UploadButton from "../styles/UploadButton";
 import PhotoMode from "../styles/PhotoMode"
 import PhotoEnable from "../styles/PhotoEnable"
 import Switch from "../styles/PhotoEnable"
@@ -102,14 +102,14 @@ const Admin = () => {
             style={{ color: "rgba(74,144,226,1)" }}
           ></MaterialUISwitch>
         </Switch>
-        <MaterialButtonGrey
+        <UploadButton
           style={{
             height: 25,
             width: 85,
-            marginLeft: 13
+            marginLeft: 0
           }}
           caption="UPLOAD"
-        ></MaterialButtonGrey>
+        ></UploadButton>
       </PhotoEnable>
       <ButtonStack>
         <Button>
