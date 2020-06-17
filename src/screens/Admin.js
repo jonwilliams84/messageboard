@@ -107,7 +107,7 @@ const Admin = () => {
             height: 25,
             width: 85,
             marginLeft: 10,
-            marginTop: 20
+            marginTop: 0
           }}
           caption="UPLOAD"
         ></UploadButton>
