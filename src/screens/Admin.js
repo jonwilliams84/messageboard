@@ -15,7 +15,7 @@ import MaterialUISwitch from "@material-ui/core/Switch";
 import UploadButton from "../styles/UploadButton";
 import PhotoMode from "../styles/PhotoMode"
 import PhotoEnable from "../styles/PhotoEnable"
-import Switch from "../styles/PhotoEnable"
+import PhotoEnableSwitch from "../styles/PhotoEnableSwitch"
 import ApplyButton from "../styles/ApplyButton"
 
 const Admin = () => {
@@ -95,19 +95,19 @@ const Admin = () => {
       />
       <PhotoEnable>
         <PhotoMode>Photo Mode</PhotoMode>
-        <Switch>
+        <PhotoEnableSwitch>
           <MaterialUISwitch
             color="primary"
             checked={true}
             style={{ color: "rgba(74,144,226,1)" }}
           ></MaterialUISwitch>
-        </Switch>
+        </PhotoEnableSwitch>
         <UploadButton
           style={{
             height: 25,
             width: 85,
-            marginLeft: -100,
-            marginTop: 30
+            marginLeft: 10,
+            marginTop: 20
           }}
           caption="UPLOAD"
         ></UploadButton>
