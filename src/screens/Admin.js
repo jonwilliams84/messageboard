@@ -116,20 +116,17 @@ const Admin = () => {
             style={{ color: "rgba(74,144,226,1)" }}
           ></MaterialUISwitch>
         </PhotoEnableSwitch>
-        {photoMode && (
-          <UploadButton
-            imageChange={imageChange}
-            image={image}
-            style={{
-              width: 32,
-              height: 32,
-              backgroundColor: "rgba(0,0,0,1)",
-              marginLeft: 0,
-              marginTop: 0,
-            }}
-            chipText="UPLOAD"
-          ></UploadButton>
-        )}
+        <UploadButton
+        style={{
+          width: 32,
+          height: 32,
+          backgroundColor: "rgba(0,0,0,1)",
+          marginLeft: 0,
+          marginTop: 0,
+          cursor: 'pointer'
+        }}
+        chipText="UPLOAD"
+      ></UploadButton>
       </PhotoEnable>
       <ApplyButton
         onClick={setSettings}
