@@ -123,6 +123,7 @@ const Admin = () => {
           <UploadButton
             imageChange={imageChange}
             image={image}
+            photoMode={photoMode}
             style={{
               width: 32,
               height: 32,

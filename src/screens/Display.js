@@ -7,7 +7,6 @@ import BigPicture from '../components/BigPicture';
 function Display(props) {
   const [formValues, setFormValues] = useState({});
   const [backgroundColour, setBackgroundColour] = useState("#000");
-  const [image, setImage] = useState();
   const [photoMode, setPhotoMode] = useState(false);
 
   useEffect(() => {
@@ -21,9 +20,6 @@ function Display(props) {
         setFormValues(JSON.parse(data.lines));
         setBackgroundColour(data.backgroundColour);
         setPhotoMode(data.photoMode);
-        if (data.image) {
-          setImage(data.image);
-        }
       };
       fetchData();
     }, 1000);
@@ -31,7 +27,7 @@ function Display(props) {
   return (
     <Content>
       {photoMode ? (
-        <BigPicture image={image} />
+        <BigPicture backgroundColour={backgroundColour} />
       ) : (
         <Board formValues={formValues} backgroundColour={backgroundColour} />
       )}
