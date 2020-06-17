@@ -5,7 +5,7 @@ const PhotoEnable = styled.div`
   height: 40px;
   flex-direction: row;
   display: flex;
-  margin-top: 20px;
+  margin-top: 30px;
   align-items: center;
   text-align: center;
   margin-left: 0 auto;

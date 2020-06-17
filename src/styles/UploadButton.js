@@ -16,7 +16,7 @@ const Container = styled.div`
   align-items: center;
   flex-direction: row;
   border-radius: 2px;
-  min-width: 88px;
+  min-width: 80px;
   padding-left: 16px;
   padding-right: 16px;
   box-shadow: 0px 1px 5px  0.35px #000 ;
