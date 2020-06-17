@@ -16,6 +16,7 @@ import MaterialButtonGrey from "../styles/MaterialButtonGrey";
 import PhotoMode from "../styles/PhotoMode"
 import PhotoEnable from "../styles/PhotoEnable"
 import Switch from "../styles/PhotoEnable"
+import ApplyButton from "../styles/ApplyButton"
 
 const Admin = () => {
   const [formValues, setFormValues] = useState({});
@@ -110,13 +111,21 @@ const Admin = () => {
           caption="UPLOAD"
         ></MaterialButtonGrey>
       </PhotoEnable>
-
       <ButtonStack>
         <Button>
           <ButtonOverlay></ButtonOverlay>
         </Button>
         <ButtonSpan onClick={setSettings}>APPLY</ButtonSpan>
       </ButtonStack>
+      <ApplyButton
+        style={{
+          height: 36,
+          width: 100,
+          marginTop: 34,
+          marginLeft: 136
+        }}
+        caption="APPLY"
+      ></ApplyButton>
     </AdminContent>
 
   );
