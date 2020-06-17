@@ -1,12 +1,12 @@
 import styled, { css } from "styled-components";
 
 const PhotoEnable = styled.div`
-  width: 214px;
-  height: 25px;
+  width: 250px;
+  height: 35px;
   flex-direction: row;
   display: flex;
-  margin-top: 33px;
-  align-self: center;
+  margin-top: 0px;
+  align-items: center;
 `;
 
 export default PhotoEnable;

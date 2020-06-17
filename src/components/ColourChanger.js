@@ -14,8 +14,8 @@ const ColourPicker = ({ backgroundColour, handleBackgroundColourChange }) => {
 
   const colour = {
     marginTop: "5rem",
-    width: "20rem",
-    height: "20rem",
+    width: "8rem",
+    height: "8rem",
     borderRadius: "50%",
     background: `${backgroundColour}`,
     cursor: "pointer",

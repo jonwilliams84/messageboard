@@ -4,10 +4,11 @@ const PhotoMode = styled.span`
   font-family: Bebas Neue;
   font-style: normal;
   font-weight: 400;
-  color: #121212;
+  color: rgb(255,255,255,1);
   font-size: 17px;
-  margin-left: -76px;
-  margin-top: 3px;
+  margin-left: 0px;
+  margin-top: 1px;
+  align-items: center;
 `;
 
 export default PhotoMode;

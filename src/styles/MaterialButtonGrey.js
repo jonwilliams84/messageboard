@@ -23,7 +23,7 @@ const Container = styled.div`
 `;
 
 const Caption = styled.span`
-  font-family: Roboto;
+  font-family: Bebas Neue;
   color: #000000;
   font-size: 14px;
 `;
