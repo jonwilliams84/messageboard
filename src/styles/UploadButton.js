@@ -25,7 +25,7 @@ function UploadButton(props) {
       {({ onImageUpload }) => (
         <Container onClick={onImageUpload} {...props}>
           {renderImage()}
-          <ChipText>{props.chipText || "Example Chip"}</ChipText>
+          <ChipText>{props.chipText || ""}</ChipText>
         </Container>
       )}
     </ImageUploading>
@@ -43,7 +43,7 @@ const Container = styled.div`
 `;
 
 const LeftImage = styled.img`
-  height: 32px;
+  height: 60px;
   width: 100%;
   background-color: #ccc;
   border-radius: 16px;

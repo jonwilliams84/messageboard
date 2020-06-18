@@ -9,6 +9,8 @@ const BigPicture = ({backgroundColour, imageName}) => {
 const BigImage = styled.div`
   width: 100vw;
   height: 100vh;
+  background-image: url(${`${URL}/image`});
+  background-size: cover;
   background-image: ${props => `url(${URL}/image?name=${props.imageName})`};
   background-repeat: no-repeat;
   background-position: 50% 50%;
