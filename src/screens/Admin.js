@@ -48,9 +48,19 @@ const Admin = () => {
   };
 
   const handleBackgroundColourChange = (colour, line) => {
-    // TODO update this maybe a switch statement so it changes the background colour line here?
-    console.log(line)
-    setBackgroundColour(colour.hex);
+    switch (line) {
+      case "1":
+        setFormValues({ ...formValues, line1Colour: colour.hex });
+        break;
+      case "2":
+        setFormValues({ ...formValues, line2Colour: colour.hex });
+        break;
+      case "3":
+        setFormValues({ ...formValues, line3Colour: colour.hex });
+        break;
+      default:
+        setBackgroundColour(colour.hex);
+    }
   };
 
   const setSettings = async () => {
@@ -93,13 +103,19 @@ const Admin = () => {
           name="line1"
           onChange={updateLine}
           maxLength={15}
-          backgroundColour={backgroundColour}
+          backgroundColour={
+            formValues.line1Colour ? formValues.line1Colour : backgroundColour
+          }
         ></FormText>
         <ColourPicker
-          backgroundColour={backgroundColour}
-          handleBackgroundColourChange={(colour) => handleBackgroundColourChange(colour, "1")}
-          height='5rem'
-          width='5rem'
+          backgroundColour={
+            formValues.line1Colour ? formValues.line1Colour : backgroundColour
+          }
+          handleBackgroundColourChange={(colour) =>
+            handleBackgroundColourChange(colour, "1")
+          }
+          height="5rem"
+          width="5rem"
         />
       </InputWrapper>
       <InputWrapper>
@@ -109,13 +125,19 @@ const Admin = () => {
           name="line2"
           onChange={updateLine}
           maxLength={15}
-          backgroundColour={backgroundColour}
+          backgroundColour={
+            formValues.line2Colour ? formValues.line2Colour : backgroundColour
+          }
         ></FormText>
         <ColourPicker
-          backgroundColour={backgroundColour}
-          handleBackgroundColourChange={(colour) => handleBackgroundColourChange(colour, "2")}
-          height='5rem'
-          width='5rem'
+          backgroundColour={
+            formValues.line2Colour ? formValues.line2Colour : backgroundColour
+          }
+          handleBackgroundColourChange={(colour) =>
+            handleBackgroundColourChange(colour, "2")
+          }
+          height="5rem"
+          width="5rem"
         />
       </InputWrapper>
       <InputWrapper>
@@ -125,20 +147,28 @@ const Admin = () => {
           name="line3"
           onChange={updateLine}
           maxLength={15}
-          backgroundColour={backgroundColour}
+          backgroundColour={
+            formValues.line3Colour ? formValues.line3Colour : backgroundColour
+          }
         ></FormText>
         <ColourPicker
-          backgroundColour={backgroundColour}
-          handleBackgroundColourChange={(colour) => handleBackgroundColourChange(colour, "3")}
-          height='5rem'
-          width='5rem'
+          backgroundColour={
+            formValues.line3Colour ? formValues.line3Colour : backgroundColour
+          }
+          handleBackgroundColourChange={(colour) =>
+            handleBackgroundColourChange(colour, "3")
+          }
+          height="5rem"
+          width="5rem"
         />
       </InputWrapper>
       <ColourPicker
         backgroundColour={backgroundColour}
-        handleBackgroundColourChange={(colour) => handleBackgroundColourChange(colour, "all")}
-        height='8rem'
-        width='8rem'
+        handleBackgroundColourChange={(colour) =>
+          handleBackgroundColourChange(colour, "all")
+        }
+        height="8rem"
+        width="8rem"
       />
       <PhotoEnable>
         <PhotoMode>Photo Mode</PhotoMode>
