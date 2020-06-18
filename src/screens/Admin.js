@@ -21,6 +21,7 @@ const Admin = () => {
   const [formValues, setFormValues] = useState({});
   const [backgroundColour, setBackgroundColour] = useState("#000");
   const [image, setImage] = useState();
+  const [imageName, setImageName] = useState("");
   const [photoMode, setPhotoMode] = useState(false);
 
   useEffect(() => {
@@ -33,6 +34,7 @@ const Admin = () => {
       setBackgroundColour(data.backgroundColour);
       setPhotoMode(data.photoMode);
       if (data.image) {
+        setImageName(data.imageName)
         setImage(data.image);
       }
     };
@@ -55,6 +57,7 @@ const Admin = () => {
       photoMode: photoMode,
     };
     if (image && photoMode) {
+      body.imageName = imageName;
       body.image = image;
     }
     const response = await fetch(URL, {
@@ -69,6 +72,7 @@ const Admin = () => {
   };
 
   const imageChange = (imageList) => {
+    setImageName(imageList[0].file.name);
     setImage(imageList[0].dataURL);
   };
 
