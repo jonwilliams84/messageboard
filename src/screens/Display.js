@@ -26,6 +26,7 @@ function Display(props) {
       fetchData();
     }, 1000);
   }, []);
+
   return (
     <Content>
       {photoMode ? (

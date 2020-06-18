@@ -59,6 +59,12 @@ const Admin = () => {
         setFormValues({ ...formValues, line3Colour: colour.hex });
         break;
       default:
+        setFormValues({
+          ...formValues,
+          line1Colour: "",
+          line2Colour: "",
+          line3Colour: "",
+        });
         setBackgroundColour(colour.hex);
     }
   };
