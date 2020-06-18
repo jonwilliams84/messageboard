@@ -12,6 +12,7 @@ const TextInstance = styled.span`
   display: flex;
   align-items: center;
   align-content: center;
+  margin-top: 2rem;
 `;
 
 export default TextInstance;
