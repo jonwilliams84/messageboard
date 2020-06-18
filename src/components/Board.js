@@ -4,7 +4,6 @@ import TextContainer from "../styles/TextContainer";
 import TextInstance from "../styles/TextInstance";
 
 const Board = ({formValues, backgroundColour, line1Colour, line2Colour, line3Colour }) => {
-  console.log(backgroundColour)
 
   return (
     <Stack>
