@@ -129,14 +129,14 @@ const Admin = () => {
             image={image}
             photoMode={photoMode}
             style={{
-              width: 32,
-              height: 32,
+              width: 60,
+              height: 60,
               backgroundColor: "rgba(0,0,0,1)",
               marginLeft: 0,
-              marginTop: 0,
+              marginTop: 20,
               cursor: "pointer",
             }}
-            chipText="UPLOAD"
+            chipText=""
           ></UploadButton>
         )}
       </PhotoEnable>
@@ -145,7 +145,7 @@ const Admin = () => {
         style={{
           height: 40,
           width: 150,
-          marginTop: 40,
+          marginTop: 150,
           marginLeft: 0,
           cursor: "pointer",
         }}
