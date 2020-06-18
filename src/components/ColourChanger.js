@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { SketchPicker } from "react-color";
 
-const ColourPicker = ({ backgroundColour, handleBackgroundColourChange }) => {
+const ColourPicker = ({ height, width, backgroundColour, handleBackgroundColourChange }) => {
   const [showColourPicker, setShowColourPicker] = useState(false);
 
   const handleClick = () => {
@@ -14,8 +14,8 @@ const ColourPicker = ({ backgroundColour, handleBackgroundColourChange }) => {
 
   const colour = {
     // marginTop: "5rem",
-    width: "8rem",
-    height: "8rem",
+    width: width,
+    height: height,
     borderRadius: "50%",
     background: `${backgroundColour}`,
     cursor: "pointer",

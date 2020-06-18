@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
-import Content from "../styles/Content";
+// import Content from "../styles/Content";
 import FormText from "../components/FormText";
 import ColourPicker from "../components/ColourChanger";
 import AdminContent from "../styles/AdminContent";
 import MessageBoardAdmin from "../styles/MessageBoardAdmin";
-import FormInput from "../styles/FormInput";
-import ButtonStack from "../styles/ButtonStack";
-import Button from "../styles/Button";
-import ButtonOverlay from "../styles/ButtonOverlay";
-import ButtonSpan from "../styles/ButtonSpan";
+// import FormInput from "../styles/FormInput";
+// import ButtonStack from "../styles/ButtonStack";
+// import Button from "../styles/Button";
+// import ButtonOverlay from "../styles/ButtonOverlay";
+// import ButtonSpan from "../styles/ButtonSpan";
 import { ADMIN_URL as URL } from "../Constants";
 import MaterialUISwitch from "@material-ui/core/Switch";
 import UploadButton from "../styles/UploadButton";
@@ -98,6 +98,8 @@ const Admin = () => {
         <ColourPicker
           backgroundColour={backgroundColour}
           handleBackgroundColourChange={(colour) => handleBackgroundColourChange(colour, "1")}
+          height='5rem'
+          width='5rem'
         />
       </InputWrapper>
       <InputWrapper>
@@ -112,6 +114,8 @@ const Admin = () => {
         <ColourPicker
           backgroundColour={backgroundColour}
           handleBackgroundColourChange={(colour) => handleBackgroundColourChange(colour, "2")}
+          height='5rem'
+          width='5rem'
         />
       </InputWrapper>
       <InputWrapper>
@@ -126,11 +130,15 @@ const Admin = () => {
         <ColourPicker
           backgroundColour={backgroundColour}
           handleBackgroundColourChange={(colour) => handleBackgroundColourChange(colour, "3")}
+          height='5rem'
+          width='5rem'
         />
       </InputWrapper>
       <ColourPicker
         backgroundColour={backgroundColour}
-          handleBackgroundColourChange={(colour) => handleBackgroundColourChange(colour, "all")}
+        handleBackgroundColourChange={(colour) => handleBackgroundColourChange(colour, "all")}
+        height='8rem'
+        width='8rem'
       />
       <PhotoEnable>
         <PhotoMode>Photo Mode</PhotoMode>
@@ -177,7 +185,9 @@ const Admin = () => {
 const InputWrapper = styled.div`
   display: flex;
   align-items: center;
-  align-content: space-between;
+  align-content: center;
+  flex-direction: row;
+  justify-content: space-between;
 `;
 
 export default Admin;
