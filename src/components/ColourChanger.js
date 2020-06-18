@@ -13,12 +13,13 @@ const ColourPicker = ({ backgroundColour, handleBackgroundColourChange }) => {
   };
 
   const colour = {
-    marginTop: "5rem",
+    // marginTop: "5rem",
     width: "8rem",
     height: "8rem",
     borderRadius: "50%",
     background: `${backgroundColour}`,
     cursor: "pointer",
+    margin: "2rem 0",
   };
   const swatch = {
     padding: "5px",

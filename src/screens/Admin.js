@@ -16,6 +16,7 @@ import PhotoMode from "../styles/PhotoMode";
 import PhotoEnable from "../styles/PhotoEnable";
 import PhotoEnableSwitch from "../styles/PhotoEnableSwitch";
 import ApplyButton from "../styles/ApplyButton";
+import styled from "styled-components";
 
 const Admin = () => {
   const [formValues, setFormValues] = useState({});
@@ -34,7 +35,7 @@ const Admin = () => {
       setBackgroundColour(data.backgroundColour);
       setPhotoMode(data.photoMode);
       if (data.image) {
-        setImageName(data.imageName)
+        setImageName(data.imageName);
         setImage(data.image);
       }
     };
@@ -46,7 +47,9 @@ const Admin = () => {
     setFormValues(newFormValues);
   };
 
-  const handleBackgroundColourChange = (colour) => {
+  const handleBackgroundColourChange = (colour, line) => {
+    // TODO update this maybe a switch statement so it changes the background colour line here?
+    console.log(line)
     setBackgroundColour(colour.hex);
   };
 
@@ -83,7 +86,7 @@ const Admin = () => {
   return (
     <AdminContent>
       <MessageBoardAdmin>Message Board {"\n"}Admin</MessageBoardAdmin>
-      <FormInput>
+      <InputWrapper>
         <FormText
           defaultValue={formValues.line1 ? formValues.line1 : ""}
           label="LINE 1"
@@ -92,6 +95,12 @@ const Admin = () => {
           maxLength={15}
           backgroundColour={backgroundColour}
         ></FormText>
+        <ColourPicker
+          backgroundColour={backgroundColour}
+          handleBackgroundColourChange={(colour) => handleBackgroundColourChange(colour, "1")}
+        />
+      </InputWrapper>
+      <InputWrapper>
         <FormText
           defaultValue={formValues.line2 ? formValues.line2 : ""}
           label="LINE 2"
@@ -100,6 +109,12 @@ const Admin = () => {
           maxLength={15}
           backgroundColour={backgroundColour}
         ></FormText>
+        <ColourPicker
+          backgroundColour={backgroundColour}
+          handleBackgroundColourChange={(colour) => handleBackgroundColourChange(colour, "2")}
+        />
+      </InputWrapper>
+      <InputWrapper>
         <FormText
           defaultValue={formValues.line3 ? formValues.line3 : ""}
           label="LINE 3"
@@ -108,10 +123,14 @@ const Admin = () => {
           maxLength={15}
           backgroundColour={backgroundColour}
         ></FormText>
-      </FormInput>
+        <ColourPicker
+          backgroundColour={backgroundColour}
+          handleBackgroundColourChange={(colour) => handleBackgroundColourChange(colour, "3")}
+        />
+      </InputWrapper>
       <ColourPicker
         backgroundColour={backgroundColour}
-        handleBackgroundColourChange={handleBackgroundColourChange}
+          handleBackgroundColourChange={(colour) => handleBackgroundColourChange(colour, "all")}
       />
       <PhotoEnable>
         <PhotoMode>Photo Mode</PhotoMode>
@@ -154,5 +173,11 @@ const Admin = () => {
     </AdminContent>
   );
 };
+
+const InputWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  align-content: space-between;
+`;
 
 export default Admin;

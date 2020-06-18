@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const Input = styled.input`
+  margin-right: 5rem;
   font-family: Bebas Neue;
   font-style: normal;
   font-weight: 400;
@@ -13,7 +14,7 @@ const Input = styled.input`
   border-radius: 5px;
   font-size: 25px;
   text-align: center;
-  background: ${props => props.backgroundColour};
+  background: ${(props) => props.backgroundColour};
 `;
 
 export default Input;
