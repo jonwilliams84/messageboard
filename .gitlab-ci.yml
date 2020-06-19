@@ -2,7 +2,7 @@ image: node:slim
 
 stages:
   - build
-  - test
+#  - test
   - build_image
   - push_image
 
@@ -24,9 +24,9 @@ build_app:
   only:
     - master
     
-testing_testing:
-  stage: test
-  script: npm test
+#testing_testing:
+#  stage: test
+#  script: npm test
   
 build_image:
   image: docker:19.03.11
