@@ -21,7 +21,9 @@ build_app:
     paths:
       - build/
     expire_in: 1 day
-
+  only:
+    - master
+    
 testing_testing:
   stage: test
   script: npm test
@@ -36,7 +38,7 @@ build_image:
   dependencies:
     - testing_testing
   only:
-    - master
+#    - master
     changes:
       - Dockerfile
 
