@@ -11,7 +11,7 @@ function Display(props) {
   const [imageName, setImageName] = useState("");
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    setInterval(() => {
       console.log("This will run every second!");
       const fetchData = async () => {
         const response = await fetch(URL, {

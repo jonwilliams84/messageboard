@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import styled, { css } from "styled-components";
+import React from "react";
+import styled from "styled-components";
 import ImageUploading from "react-images-uploading";
 import { ADMIN_URL } from '../Constants';
 

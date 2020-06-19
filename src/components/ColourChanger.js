@@ -21,14 +21,6 @@ const ColourPicker = ({ height, width, backgroundColour, handleBackgroundColourC
     cursor: "pointer",
     margin: "2rem 0",
   };
-  const swatch = {
-    padding: "5px",
-    background: "#fff",
-    borderRadius: "1px",
-    boxShadow: "0 0 0 1px rgba(0,0,0,.1)",
-    display: "inline-block",
-    cursor: "pointer",
-  };
   const popover = {
     position: "absolute",
     zIndex: "2",
