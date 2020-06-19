@@ -25,6 +25,7 @@ testing_testing:
   script: npm test
   
 build_image:
+  image: docker:19.03.11
   stage: build_image
   script:
     - docker build -t sirfragalot/${CI_PROJECT_TITLE}:${LABEL} .
@@ -34,6 +35,7 @@ build_image:
     - master
     
 push_image:
+  image: docker:19.03.11
   stage: push_image
   script:
     - env
