@@ -29,10 +29,6 @@ before_script:
   - export LABEL=$(grep VERSION Dockerfile |  cut -d'=' -f2)
   - docker login -u $DHUB_USER -p $DHUB_PASS 
   
-stages:
-  - build
-  - push
-  
 build_image:
   stage: build_image
   script:
