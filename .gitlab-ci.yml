@@ -23,11 +23,6 @@ build_app:
 testing_testing:
   stage: test
   script: npm test
-      
-before_script:
-  - env
-  - export LABEL=$(grep VERSION Dockerfile |  cut -d'=' -f2)
-  - docker login -u $DHUB_USER -p $DHUB_PASS 
   
 build_image:
   stage: build_image
@@ -41,6 +36,9 @@ build_image:
 push_image:
   stage: push_image
   script:
+    - env
+    - export LABEL=$(grep VERSION Dockerfile |  cut -d'=' -f2)
+    - docker login -u $DHUB_USER -p $DHUB_PASS 
     - docker push sirfragalot/${CI_PROJECT_TITLE}:${LABEL}
   dependencies:
       - build_image
