@@ -7,8 +7,9 @@ stages:
   - push_image
 
 cache:
+  key: "$CI_BUILD_REF"  
   paths:
-  - node_modules/
+  - build/
 
 build_app:
   stage: build
