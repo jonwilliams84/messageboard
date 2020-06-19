@@ -8,21 +8,18 @@
       paths:
         - node_modules/
 
-    install_dependencies:
-      stage: build
-      script:
-        - npm install
-      artifacts:
-        paths:
-          - node_modules/
-
     build_app:
       stage: build
       script:
-        - npm run-script build
+        - npm install --progress=false
+        - npm run build
       artifacts:
         paths:
+          - node_modules/
           - build/
+      expire_in: 1 day
+      paths:
+        - dist
           
     testing_testing:
       stage: test
