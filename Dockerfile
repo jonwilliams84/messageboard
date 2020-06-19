@@ -13,4 +13,3 @@ LABEL MAINTAINER="jonwilliams84@gmail.com"
 LABEL IMAGENAME=messageboard
 LABEL OS=linux
 LABEL VERSION=1.0
-
