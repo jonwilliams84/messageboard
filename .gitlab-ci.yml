@@ -12,12 +12,18 @@
       stage: build
       script:
         - npm install
-        - npm build
       artifacts:
         paths:
           - node_modules/
-          - build/
 
+    build_app:
+      stage: build
+      script:
+        - npm run-script build
+      artifacts:
+        paths:
+          - build/
+          
     testing_testing:
       stage: test
       script: npm test
