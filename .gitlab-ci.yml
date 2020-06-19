@@ -37,6 +37,9 @@ build_image:
     - testing_testing
   only:
     - master
+    changes:
+      - Dockerfile
+
     
 push_image:
   image: docker:19.03.11
