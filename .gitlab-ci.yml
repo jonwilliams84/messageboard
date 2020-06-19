@@ -1,23 +1,50 @@
-    image: node:latest
+image: node:latest
 
-    stages:
+stages:
+  - build
+  - test
+  - build_image
+  - push_image
+
+cache:
+  paths:
+  - node_modules/
+
+build_app:
+  stage: build
+  script:
+    - npm install --progress=false
+    - npm run build
+  artifacts:
+    paths:
+      - build/
+    expire_in: 1 day
+
+testing_testing:
+  stage: test
+  script: npm test
+      
+before_script:
+  - env
+  - export LABEL=$(grep VERSION Dockerfile |  cut -d'=' -f2)
+  - docker login -u $DHUB_USER -p $DHUB_PASS 
+  
+stages:
+  - build
+  - push
+  
+build_image:
+  stage: build_image
+  script:
+    - docker build -t sirfragalot/${CI_PROJECT_TITLE}:${LABEL} .
+  only:
+    - master
+    
+push_image:
+  stage: push_image
+  script:
+    - docker push sirfragalot/${CI_PROJECT_TITLE}:${LABEL}
+  dependencies:
       - build
-      - test
-
-    cache:
-      paths:
-        - node_modules/
-
-    build_app:
-      stage: build
-      script:
-        - npm install --progress=false
-        - npm run build
-      artifacts:
-        paths:
-          - build/
-        expire_in: 1 day
-
-    testing_testing:
-      stage: test
-      script: npm test
+  when: manual
+  allow_failure: false
