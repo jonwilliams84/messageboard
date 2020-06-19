@@ -8,7 +8,7 @@ COPY nginx.conf /etc/nginx/nginx.conf
 EXPOSE 80
 
 #ENTRYPOINT ["nginx","-g","daemon off;"]
-CMD [./run.sh]
+CMD [run.sh]
 
 LABEL MAINTAINER="jonwilliams84@gmail.com"
 LABEL IMAGENAME=messageboard
