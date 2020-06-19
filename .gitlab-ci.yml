@@ -35,8 +35,8 @@ build_image:
     - env
     - export LABEL=$(grep VERSION Dockerfile |  cut -d'=' -f2)
     - docker build -t sirfragalot/${CI_PROJECT_TITLE}:${LABEL} .
-  dependencies:
-    - testing_testing
+#  dependencies:
+#    - testing_testing
   only:
 #    - master
     changes:
