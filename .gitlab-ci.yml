@@ -15,12 +15,9 @@
         - npm run build
       artifacts:
         paths:
-          - node_modules/
           - build/
         expire_in: 1 day
-        paths:
-          - dist
-          
+
     testing_testing:
       stage: test
       script: npm test
