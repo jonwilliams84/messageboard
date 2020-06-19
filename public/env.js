@@ -1,1 +1,1 @@
-window.env = { ADMIN_URL: "http://${SERVER_ADDRESS}:42069/settings" };
+window.env = { ADMIN_URL: "http://localhost:42069/settings" };
