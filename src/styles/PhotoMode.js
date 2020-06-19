@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 const PhotoMode = styled.span`
   font-family: Bebas Neue;
