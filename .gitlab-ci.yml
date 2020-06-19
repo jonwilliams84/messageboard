@@ -44,6 +44,7 @@ push_image:
   before_script:
     - docker login -u $DHUB_USER -p $DHUB_PASS    
   script:
+    - export LABEL=$(grep VERSION Dockerfile |  cut -d'=' -f2)
     - docker push sirfragalot/${CI_PROJECT_TITLE}:${LABEL}
   dependencies:
       - build_image
