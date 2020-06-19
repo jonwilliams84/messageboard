@@ -1,7 +1,6 @@
 FROM nginx:1.15.2-alpine
 
 COPY build /var/www
-COPY env.js /var/www/env.js
 
 RUN ls /var/www
 COPY nginx.conf /etc/nginx/nginx.conf
