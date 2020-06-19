@@ -28,6 +28,8 @@ build_image:
   image: docker:19.03.11
   stage: build_image
   script:
+    - env
+    - export LABEL=$(grep VERSION Dockerfile |  cut -d'=' -f2)
     - docker build -t sirfragalot/${CI_PROJECT_TITLE}:${LABEL} .
   dependencies:
     - testing_testing
@@ -38,8 +40,6 @@ push_image:
   image: docker:19.03.11
   stage: push_image
   script:
-    - env
-    - export LABEL=$(grep VERSION Dockerfile |  cut -d'=' -f2)
     - docker login -u $DHUB_USER -p $DHUB_PASS 
     - docker push sirfragalot/${CI_PROJECT_TITLE}:${LABEL}
   dependencies:
