@@ -1,5 +1,7 @@
 FROM nginx:1.15.2-alpine
-COPY ./build /var/www
+
+ADD https://gitlab.sirfragalot.com/code-stash/messageboard/-/jobs/artifacts/master/browse?job=build_app /var/www
+#COPY ./build /var/www
 COPY nginx.conf /etc/nginx/nginx.conf
 EXPOSE 80
 ENTRYPOINT ["nginx","-g","daemon off;"]
