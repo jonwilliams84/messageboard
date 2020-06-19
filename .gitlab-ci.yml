@@ -33,6 +33,8 @@ build_image:
   stage: build_image
   script:
     - docker build -t sirfragalot/${CI_PROJECT_TITLE}:${LABEL} .
+  dependencies:
+    - test
   only:
     - master
     
@@ -41,6 +43,6 @@ push_image:
   script:
     - docker push sirfragalot/${CI_PROJECT_TITLE}:${LABEL}
   dependencies:
-      - build
+      - build_image
   when: manual
   allow_failure: false
