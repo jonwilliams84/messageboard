@@ -17,9 +17,9 @@
         paths:
           - node_modules/
           - build/
-      expire_in: 1 day
-      paths:
-        - dist
+        expire_in: 1 day
+        paths:
+          - dist
           
     testing_testing:
       stage: test
