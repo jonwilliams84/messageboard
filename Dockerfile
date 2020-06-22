@@ -1,6 +1,14 @@
+FROM node:latest AS builder
+WORKDIR /app/
+COPY /app .
+RUN npm install --progress=false \
+ && npm run-script build
+
+
 FROM nginx:1.15.2-alpine
 
-COPY build /var/www
+
+COPY --from=builder /app/build /var/www
 COPY run.sh .
 
 RUN ls /var/www
