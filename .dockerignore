@@ -1,0 +1,12 @@
+**/node_modules
+**/dist
+**/build
+**/coverage
+**/.vite
+**/data
+.git
+.github
+.gitlab-ci.yml
+README.md
+*.md
+.env*
