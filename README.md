@@ -13,7 +13,7 @@ A self-hosted, browser-based message board / signage display.
 | Backend  | Hono on Node 22, better-sqlite3, file-system image storage  |
 | Updates  | Server-Sent Events (with polling fallback)                  |
 | Build    | Multi-stage Docker, ~150 MB final image, single port (8080) |
-| CI       | GitLab CI (typecheck, build, image push to GitLab registry) |
+| CI       | GitLab CI + GitHub Actions (typecheck, build, image push)   |
 
 ## Run with Docker
 
@@ -78,4 +78,6 @@ Dockerfile          multi-stage build → single runtime image
 docker-compose.yml  one-command local deploy
 .gitlab-ci.yml      typecheck + build for both packages; kaniko image
                     push to $CI_REGISTRY_IMAGE on the default branch
+.github/workflows/  same jobs on GitHub Actions; pushes image to GHCR
+                    on main (kept in case the repo goes public there)
 ```
