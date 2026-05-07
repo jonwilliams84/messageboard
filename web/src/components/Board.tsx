@@ -20,10 +20,13 @@ const Stack = styled.div<{ $bg: string }>`
   flex-direction: column;
   background: ${(p) => p.$bg};
   overflow: hidden;
+  container-type: size;
 `;
 
 const Row = styled.div<{ $bg: string; $first: boolean }>`
   flex: 1;
+  min-height: 0;
+  min-width: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -46,9 +49,9 @@ const Row = styled.div<{ $bg: string; $first: boolean }>`
 
 const Text = styled.span`
   color: #121212;
-  font-size: clamp(4rem, 22vh, 28rem);
+  font-size: clamp(1rem, 22cqh, 28rem);
   line-height: 1;
-  padding: 0 2rem;
+  padding: 0 4cqw;
   text-align: center;
   white-space: nowrap;
   overflow: hidden;
