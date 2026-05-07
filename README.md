@@ -13,7 +13,7 @@ A self-hosted, browser-based message board / signage display.
 | Backend  | Hono on Node 22, better-sqlite3, file-system image storage  |
 | Updates  | Server-Sent Events (with polling fallback)                  |
 | Build    | Multi-stage Docker, ~150 MB final image, single port (8080) |
-| CI       | GitHub Actions (typecheck, build, image push to GHCR)       |
+| CI       | GitLab CI (typecheck, build, image push to GitLab registry) |
 
 ## Run with Docker
 
@@ -76,5 +76,6 @@ api/   Hono API + SQLite + image storage + serves built SPA
 web/   Vite + React 19 SPA (Display, Admin, Login)
 Dockerfile          multi-stage build → single runtime image
 docker-compose.yml  one-command local deploy
-.github/workflows/  typecheck, build, image push to GHCR on main
+.gitlab-ci.yml      typecheck + build for both packages; kaniko image
+                    push to $CI_REGISTRY_IMAGE on the default branch
 ```
