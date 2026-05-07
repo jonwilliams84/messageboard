@@ -57,4 +57,5 @@ const Text = styled.span`
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 100%;
+  transform: translateY(0.09em);
 `;
