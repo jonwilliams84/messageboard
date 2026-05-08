@@ -3,12 +3,13 @@ import { streamSSE } from "hono/streaming";
 import { getState, setState } from "../db.js";
 import { publish, subscribe } from "../events.js";
 import { requireAuth } from "../auth.js";
-import { Background, BoardAnimation, BoardState, Line, Texture } from "../types.js";
+import { Background, BoardAnimation, BoardState, Line, TextEffect, Texture } from "../types.js";
 
 const app = new Hono();
 
-const TEXTURES: Texture[] = ["none", "dots", "stripes", "grid", "noise"];
+const TEXTURES: Texture[] = ["none", "dots", "stripes", "grid", "noise", "paper", "fabric", "clouds", "tarmac"];
 const ANIMATIONS: BoardAnimation[] = ["none", "pan", "pulse", "shimmer"];
+const TEXT_EFFECTS: TextEffect[] = ["none", "shadow", "emboss", "engrave", "outline", "glow"];
 
 app.get("/", (c) => c.json(getState()));
 
@@ -21,6 +22,7 @@ app.post("/", requireAuth, async (c) => {
     texture: TEXTURES.includes(body.texture as Texture) ? (body.texture as Texture) : current.texture,
     animation: ANIMATIONS.includes(body.animation as BoardAnimation) ? (body.animation as BoardAnimation) : current.animation,
     defaultFont: typeof body.defaultFont === "string" && body.defaultFont ? body.defaultFont : current.defaultFont,
+    defaultTextEffect: TEXT_EFFECTS.includes(body.defaultTextEffect as TextEffect) ? (body.defaultTextEffect as TextEffect) : current.defaultTextEffect,
     photoMode: typeof body.photoMode === "boolean" ? body.photoMode : current.photoMode,
     imageName: body.imageName === undefined ? current.imageName : body.imageName,
     updatedAt: 0,
@@ -58,11 +60,13 @@ function validateLines(input: unknown): Line[] | null {
     if (typeof r.id !== "string" || typeof r.text !== "string") return null;
     if (r.color !== null && typeof r.color !== "string") return null;
     if (r.font !== undefined && r.font !== null && typeof r.font !== "string") return null;
+    if (r.textEffect !== undefined && r.textEffect !== null && !TEXT_EFFECTS.includes(r.textEffect as TextEffect)) return null;
     lines.push({
       id: r.id,
       text: r.text.slice(0, 64),
       color: typeof r.color === "string" ? r.color : null,
       font: typeof r.font === "string" ? r.font : null,
+      textEffect: TEXT_EFFECTS.includes(r.textEffect as TextEffect) ? (r.textEffect as TextEffect) : null,
     });
   }
   return lines;

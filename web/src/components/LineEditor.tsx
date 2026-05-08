@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Line } from "../types";
 import { ColorSwatch } from "./ColorSwatch";
 import { FontSelect } from "./FontSelect";
+import { TextEffectSelect } from "./TextEffectSelect";
 import { fontFamily } from "../fonts";
 
 type Props = {
@@ -47,14 +48,23 @@ export function LineEditor({
         maxLength={32}
         onChange={(e) => onChange({ ...line, text: e.target.value })}
       />
-      <FontSelect
-        compact
-        value={line.font}
-        fallback={defaultFont}
-        onChange={(font) => onChange({ ...line, font })}
-        allowInherit
-        inheritLabel="↳ default"
-      />
+      <SelectStack>
+        <FontSelect
+          compact
+          value={line.font}
+          fallback={defaultFont}
+          onChange={(font) => onChange({ ...line, font })}
+          allowInherit
+          inheritLabel="↳ default font"
+        />
+        <TextEffectSelect
+          compact
+          value={line.textEffect}
+          onChange={(textEffect) => onChange({ ...line, textEffect })}
+          allowInherit
+          inheritLabel="↳ default effect"
+        />
+      </SelectStack>
       <ColorSwatch
         value={effectiveColor}
         onChange={(hex) => onChange({ ...line, color: hex })}
@@ -66,6 +76,13 @@ export function LineEditor({
     </Row>
   );
 }
+
+const SelectStack = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 150px;
+`;
 
 const Row = styled.div`
   display: flex;

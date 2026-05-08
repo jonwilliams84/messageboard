@@ -2,15 +2,16 @@ import { ChangeEvent, useEffect, useMemo, useState } from "react";
 import styled from "styled-components";
 import { api } from "../api";
 import { clearToken, getToken } from "../auth";
-import { Background, BoardAnimation, BoardState, Line, Texture } from "../types";
+import { Background, BoardAnimation, BoardState, Line, TextEffect, Texture } from "../types";
 import { LineEditor } from "../components/LineEditor";
 import { Toggle } from "../components/Toggle";
 import { Preview } from "../components/Preview";
 import { BackgroundEditor } from "../components/BackgroundEditor";
 import { FontSelect } from "../components/FontSelect";
+import { TextEffectSelect } from "../components/TextEffectSelect";
 import { Login } from "./Login";
 
-const newLine = (): Line => ({ id: crypto.randomUUID(), text: "", color: null, font: null });
+const newLine = (): Line => ({ id: crypto.randomUUID(), text: "", color: null, font: null, textEffect: null });
 
 function bgFallback(bg: Background): string {
   return bg.type === "solid" ? bg.color : bg.from;
@@ -130,6 +131,13 @@ export function Admin() {
               <FontSelect
                 value={draft.defaultFont}
                 onChange={(name) => update({ defaultFont: name ?? draft.defaultFont })}
+              />
+            </Row>
+            <Row>
+              <Caption style={{ width: 90 }}>Default effect</Caption>
+              <TextEffectSelect
+                value={draft.defaultTextEffect}
+                onChange={(e: TextEffect | null) => update({ defaultTextEffect: e ?? "none" })}
               />
             </Row>
           </Section>

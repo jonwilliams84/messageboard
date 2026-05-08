@@ -1,7 +1,7 @@
 import Database from "better-sqlite3";
 import { mkdirSync } from "node:fs";
 import { dirname } from "node:path";
-import { Background, BoardAnimation, BoardState, DEFAULT_FONT, DEFAULT_STATE, Line, Texture } from "./types.js";
+import { Background, BoardAnimation, BoardState, DEFAULT_FONT, DEFAULT_STATE, Line, TextEffect, Texture } from "./types.js";
 
 const DB_PATH = process.env.DB_PATH ?? "./data/messageboard.db";
 
@@ -35,8 +35,9 @@ export function setState(state: BoardState): BoardState {
   return stamped;
 }
 
-const TEXTURES: Texture[] = ["none", "dots", "stripes", "grid", "noise"];
+const TEXTURES: Texture[] = ["none", "dots", "stripes", "grid", "noise", "paper", "fabric", "clouds", "tarmac"];
 const ANIMATIONS: BoardAnimation[] = ["none", "pan", "pulse", "shimmer"];
+const TEXT_EFFECTS: TextEffect[] = ["none", "shadow", "emboss", "engrave", "outline", "glow"];
 
 function migrate(raw: unknown): BoardState {
   const r = (raw ?? {}) as Record<string, unknown>;
@@ -49,6 +50,7 @@ function migrate(raw: unknown): BoardState {
     texture: TEXTURES.includes(r.texture as Texture) ? (r.texture as Texture) : "none",
     animation: ANIMATIONS.includes(r.animation as BoardAnimation) ? (r.animation as BoardAnimation) : "none",
     defaultFont: typeof r.defaultFont === "string" && r.defaultFont ? r.defaultFont : DEFAULT_FONT,
+    defaultTextEffect: TEXT_EFFECTS.includes(r.defaultTextEffect as TextEffect) ? (r.defaultTextEffect as TextEffect) : "none",
     photoMode: r.photoMode === true,
     imageName: typeof r.imageName === "string" ? r.imageName : null,
     updatedAt: typeof r.updatedAt === "number" ? r.updatedAt : 0,
@@ -62,6 +64,7 @@ function migrateLine(raw: unknown, i: number): Line {
     text: typeof r.text === "string" ? r.text : "",
     color: typeof r.color === "string" ? r.color : null,
     font: typeof r.font === "string" ? r.font : null,
+    textEffect: TEXT_EFFECTS.includes(r.textEffect as TextEffect) ? (r.textEffect as TextEffect) : null,
   };
 }
 

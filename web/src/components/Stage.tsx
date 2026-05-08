@@ -29,8 +29,29 @@ function backgroundCSS(bg: Background): string {
   }
 }
 
-const NOISE_SVG =
-  "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.45 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>\")";
+const NOISE_SVG = svgUrl(
+  "<filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.45 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/>",
+  160
+);
+
+const PAPER_SVG = svgUrl(
+  "<filter id='p'><feTurbulence type='fractalNoise' baseFrequency='0.045' numOctaves='5' stitchTiles='stitch' seed='3'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.32 0'/></filter><rect width='100%' height='100%' filter='url(%23p)'/>",
+  240
+);
+
+const CLOUDS_SVG = svgUrl(
+  "<filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.013' numOctaves='3' stitchTiles='stitch' seed='5'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.55 -0.12'/></filter><rect width='100%' height='100%' filter='url(%23c)'/>",
+  480
+);
+
+const TARMAC_SVG = svgUrl(
+  "<filter id='t'><feTurbulence type='fractalNoise' baseFrequency='0.62' numOctaves='3' stitchTiles='stitch' seed='1'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23t)'/>",
+  220
+);
+
+function svgUrl(inner: string, size: number): string {
+  return `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='${size}' height='${size}'>${inner}</svg>")`;
+}
 
 function textureCSS(t: Texture) {
   switch (t) {
@@ -60,6 +81,32 @@ function textureCSS(t: Texture) {
       return css`
         background-image: ${NOISE_SVG};
         background-size: 160px 160px;
+      `;
+    case "paper":
+      return css`
+        background-image: ${PAPER_SVG};
+        background-size: 240px 240px;
+        mix-blend-mode: multiply;
+      `;
+    case "fabric":
+      return css`
+        background-image:
+          repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.18) 0 1px, transparent 1px 4px),
+          repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.12) 0 1px, transparent 1px 4px),
+          radial-gradient(rgba(255, 255, 255, 0.04) 0.8px, transparent 1px);
+        background-size: 4px 4px, 4px 4px, 6px 6px;
+      `;
+    case "clouds":
+      return css`
+        background-image: ${CLOUDS_SVG};
+        background-size: 480px 480px;
+        mix-blend-mode: screen;
+      `;
+    case "tarmac":
+      return css`
+        background-image: ${TARMAC_SVG};
+        background-size: 220px 220px;
+        mix-blend-mode: multiply;
       `;
   }
 }

@@ -1,13 +1,19 @@
 import styled from "styled-components";
 import { BoardState } from "../types";
 import { fontFamily } from "../fonts";
+import { textEffectStyle } from "../effects";
 
 export function Board({ state }: { state: BoardState }) {
   return (
     <Stack>
       {state.lines.map((line, i) => (
         <Row key={line.id} $bg={line.color} $first={i === 0}>
-          <Text style={{ fontFamily: fontFamily(line.font ?? state.defaultFont) }}>
+          <Text
+            style={{
+              fontFamily: fontFamily(line.font ?? state.defaultFont),
+              ...textEffectStyle(line.textEffect ?? state.defaultTextEffect),
+            }}
+          >
             {line.text}
           </Text>
         </Row>
@@ -72,4 +78,10 @@ const Text = styled.span`
   position: relative;
   z-index: 2;
   transform: translateY(0.09em);
+
+  @supports (text-box-trim: trim-both) {
+    text-box-trim: trim-both;
+    text-box-edge: cap text;
+    transform: none;
+  }
 `;

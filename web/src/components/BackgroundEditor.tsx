@@ -18,7 +18,7 @@ const TYPE_LABEL: Record<Background["type"], string> = {
   radial: "Radial gradient",
 };
 
-const TEXTURES: Texture[] = ["none", "dots", "stripes", "grid", "noise"];
+const TEXTURES: Texture[] = ["none", "dots", "stripes", "grid", "noise", "paper", "fabric", "clouds", "tarmac"];
 const ANIMATIONS: BoardAnimation[] = ["none", "pan", "pulse", "shimmer"];
 
 export function BackgroundEditor({ background, texture, animation, onBackground, onTexture, onAnimation }: Props) {
