@@ -2,17 +2,18 @@ import styled from "styled-components";
 import { BoardState } from "../types";
 import { Board } from "./Board";
 import { BigPicture } from "./BigPicture";
+import { Stage } from "./Stage";
 
 export function Preview({ state }: { state: BoardState }) {
   return (
     <Frame>
-      <Inner>
+      <Stage background={state.background} texture={state.texture} animation={state.animation}>
         {state.photoMode ? (
-          <BigPicture background={state.background} imageName={state.imageName} />
+          <BigPicture imageName={state.imageName} />
         ) : (
           <Board state={state} />
         )}
-      </Inner>
+      </Stage>
     </Frame>
   );
 }
@@ -24,10 +25,4 @@ const Frame = styled.div`
   border-radius: 8px;
   border: 1px solid #333;
   overflow: hidden;
-`;
-
-const Inner = styled.div`
-  width: 100%;
-  height: 100%;
-  position: relative;
 `;
