@@ -2,14 +2,19 @@ import { ChangeEvent, useEffect, useMemo, useState } from "react";
 import styled from "styled-components";
 import { api } from "../api";
 import { clearToken, getToken } from "../auth";
-import { BoardState, Line } from "../types";
-import { ColorSwatch } from "../components/ColorSwatch";
+import { Background, BoardAnimation, BoardState, Line, Texture } from "../types";
 import { LineEditor } from "../components/LineEditor";
 import { Toggle } from "../components/Toggle";
 import { Preview } from "../components/Preview";
+import { BackgroundEditor } from "../components/BackgroundEditor";
+import { FontSelect } from "../components/FontSelect";
 import { Login } from "./Login";
 
-const newLine = (): Line => ({ id: crypto.randomUUID(), text: "", color: null });
+const newLine = (): Line => ({ id: crypto.randomUUID(), text: "", color: null, font: null });
+
+function bgFallback(bg: Background): string {
+  return bg.type === "solid" ? bg.color : bg.from;
+}
 
 export function Admin() {
   const [authed, setAuthed] = useState(!!getToken());
@@ -102,7 +107,8 @@ export function Admin() {
                 key={line.id}
                 line={line}
                 index={i}
-                defaultColor={draft.backgroundColor}
+                defaultColor={bgFallback(draft.background)}
+                defaultFont={draft.defaultFont}
                 onChange={(updated) => updateLines((ls) => ls.map((l) => (l.id === line.id ? updated : l)))}
                 onRemove={() => updateLines((ls) => ls.filter((l) => l.id !== line.id))}
                 canRemove={draft.lines.length > 1}
@@ -118,16 +124,26 @@ export function Admin() {
           </Section>
 
           <Section>
-            <SectionTitle>Background</SectionTitle>
+            <SectionTitle>Typography</SectionTitle>
             <Row>
-              <ColorSwatch
-                value={draft.backgroundColor}
-                onChange={(hex) => update({ backgroundColor: hex })}
-                size={72}
-                label="Background color"
+              <Caption style={{ width: 90 }}>Default font</Caption>
+              <FontSelect
+                value={draft.defaultFont}
+                onChange={(name) => update({ defaultFont: name ?? draft.defaultFont })}
               />
-              <Caption>Per-line colors override this.</Caption>
             </Row>
+          </Section>
+
+          <Section>
+            <SectionTitle>Background &amp; effects</SectionTitle>
+            <BackgroundEditor
+              background={draft.background}
+              texture={draft.texture}
+              animation={draft.animation}
+              onBackground={(background: Background) => update({ background })}
+              onTexture={(texture: Texture) => update({ texture })}
+              onAnimation={(animation: BoardAnimation) => update({ animation })}
+            />
           </Section>
 
           <Section>

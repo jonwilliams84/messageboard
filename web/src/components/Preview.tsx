@@ -8,7 +8,7 @@ export function Preview({ state }: { state: BoardState }) {
     <Frame>
       <Inner>
         {state.photoMode ? (
-          <BigPicture backgroundColor={state.backgroundColor} imageName={state.imageName} />
+          <BigPicture background={state.background} imageName={state.imageName} />
         ) : (
           <Board state={state} />
         )}

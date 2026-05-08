@@ -1,11 +1,14 @@
 import styled from "styled-components";
 import { Line } from "../types";
 import { ColorSwatch } from "./ColorSwatch";
+import { FontSelect } from "./FontSelect";
+import { fontFamily } from "../fonts";
 
 type Props = {
   line: Line;
   index: number;
   defaultColor: string;
+  defaultFont: string;
   onChange: (line: Line) => void;
   onRemove: () => void;
   canRemove: boolean;
@@ -15,8 +18,21 @@ type Props = {
   canMoveDown: boolean;
 };
 
-export function LineEditor({ line, index, defaultColor, onChange, onRemove, canRemove, onMoveUp, onMoveDown, canMoveUp, canMoveDown }: Props) {
+export function LineEditor({
+  line,
+  index,
+  defaultColor,
+  defaultFont,
+  onChange,
+  onRemove,
+  canRemove,
+  onMoveUp,
+  onMoveDown,
+  canMoveUp,
+  canMoveDown,
+}: Props) {
   const effectiveColor = line.color ?? defaultColor;
+  const effectiveFont = line.font ?? defaultFont;
   return (
     <Row>
       <Reorder>
@@ -25,10 +41,19 @@ export function LineEditor({ line, index, defaultColor, onChange, onRemove, canR
       </Reorder>
       <TextField
         $bg={effectiveColor}
+        style={{ fontFamily: fontFamily(effectiveFont) }}
         value={line.text}
         placeholder={`LINE ${index + 1}`}
         maxLength={32}
         onChange={(e) => onChange({ ...line, text: e.target.value })}
+      />
+      <FontSelect
+        compact
+        value={line.font}
+        fallback={defaultFont}
+        onChange={(font) => onChange({ ...line, font })}
+        allowInherit
+        inheritLabel="↳ default"
       />
       <ColorSwatch
         value={effectiveColor}
@@ -68,6 +93,7 @@ const IconBtn = styled.button`
 
 const TextField = styled.input<{ $bg: string }>`
   flex: 1;
+  min-width: 0;
   height: 56px;
   padding: 0 16px;
   font-size: 1.6rem;
