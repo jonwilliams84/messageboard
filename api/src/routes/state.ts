@@ -3,30 +3,19 @@ import { streamSSE } from "hono/streaming";
 import { getState, setState } from "../db.js";
 import { publish, subscribe } from "../events.js";
 import { requireAuth } from "../auth.js";
-import { Background, BoardAnimation, BoardState, Line, TextEffect, Texture } from "../types.js";
+import { mergeState, validateLines } from "../state-merge.js";
 
 const app = new Hono();
-
-const TEXTURES: Texture[] = ["none", "dots", "stripes", "grid", "noise", "paper", "fabric", "clouds", "tarmac"];
-const ANIMATIONS: BoardAnimation[] = ["none", "pan", "pulse", "shimmer"];
-const TEXT_EFFECTS: TextEffect[] = ["none", "shadow", "emboss", "engrave", "outline", "glow"];
 
 app.get("/", (c) => c.json(getState()));
 
 app.post("/", requireAuth, async (c) => {
-  const body = await c.req.json<Partial<BoardState>>();
-  const current = getState();
-  const next: BoardState = {
-    lines: validateLines(body.lines) ?? current.lines,
-    background: validateBackground(body.background) ?? current.background,
-    texture: TEXTURES.includes(body.texture as Texture) ? (body.texture as Texture) : current.texture,
-    animation: ANIMATIONS.includes(body.animation as BoardAnimation) ? (body.animation as BoardAnimation) : current.animation,
-    defaultFont: typeof body.defaultFont === "string" && body.defaultFont ? body.defaultFont : current.defaultFont,
-    defaultTextEffect: TEXT_EFFECTS.includes(body.defaultTextEffect as TextEffect) ? (body.defaultTextEffect as TextEffect) : current.defaultTextEffect,
-    photoMode: typeof body.photoMode === "boolean" ? body.photoMode : current.photoMode,
-    imageName: body.imageName === undefined ? current.imageName : body.imageName,
-    updatedAt: 0,
-  };
+  const body = await c.req.json<Record<string, unknown>>();
+  const lines = body.lines === undefined ? undefined : validateLines(body.lines);
+  if (body.lines !== undefined && lines === null) {
+    return c.json({ error: "invalid lines" }, 400);
+  }
+  const next = mergeState(body, getState(), lines);
   const saved = setState(next);
   publish(saved);
   return c.json(saved);
@@ -50,40 +39,5 @@ app.get("/events", (c) =>
     });
   })
 );
-
-function validateLines(input: unknown): Line[] | null {
-  if (!Array.isArray(input)) return null;
-  const lines: Line[] = [];
-  for (const raw of input) {
-    if (!raw || typeof raw !== "object") return null;
-    const r = raw as Record<string, unknown>;
-    if (typeof r.id !== "string" || typeof r.text !== "string") return null;
-    if (r.color !== null && typeof r.color !== "string") return null;
-    if (r.font !== undefined && r.font !== null && typeof r.font !== "string") return null;
-    if (r.textEffect !== undefined && r.textEffect !== null && !TEXT_EFFECTS.includes(r.textEffect as TextEffect)) return null;
-    lines.push({
-      id: r.id,
-      text: r.text.slice(0, 64),
-      color: typeof r.color === "string" ? r.color : null,
-      font: typeof r.font === "string" ? r.font : null,
-      textEffect: TEXT_EFFECTS.includes(r.textEffect as TextEffect) ? (r.textEffect as TextEffect) : null,
-    });
-  }
-  return lines;
-}
-
-function validateBackground(input: unknown): Background | null {
-  if (!input || typeof input !== "object") return null;
-  const b = input as Record<string, unknown>;
-  if (b.type === "solid" && typeof b.color === "string") return { type: "solid", color: b.color };
-  if (b.type === "linear" && typeof b.from === "string" && typeof b.to === "string") {
-    const angle = typeof b.angle === "number" ? b.angle : 90;
-    return { type: "linear", from: b.from, to: b.to, angle };
-  }
-  if (b.type === "radial" && typeof b.from === "string" && typeof b.to === "string") {
-    return { type: "radial", from: b.from, to: b.to };
-  }
-  return null;
-}
 
 export default app;
