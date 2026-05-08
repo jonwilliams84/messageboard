@@ -8,6 +8,7 @@ services:
       - messageboard-data:/data
     environment:
       ADMIN_PASSWORD: ${ADMIN_PASSWORD:-}
+      API_KEY: ${API_KEY:-}
     restart: unless-stopped
 
 volumes:

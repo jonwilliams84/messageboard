@@ -6,6 +6,7 @@ import { logger } from "hono/logger";
 import { existsSync } from "node:fs";
 import { readFile } from "node:fs/promises";
 import state from "./routes/state.js";
+import messages from "./routes/messages.js";
 import images from "./routes/images.js";
 import auth from "./routes/auth.js";
 
@@ -14,6 +15,7 @@ app.use("*", logger());
 app.use("/api/*", cors());
 
 app.route("/api/state", state);
+app.route("/api/messages", messages);
 app.route("/api/images", images);
 app.route("/api/auth", auth);
 app.get("/api/health", (c) => c.json({ ok: true }));
